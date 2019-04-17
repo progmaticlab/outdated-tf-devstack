@@ -192,6 +192,8 @@ fi
 
 if [ "$ORCHESTRATOR" == "openstack" ]; then
 
+OPENSTACK_VERSION=${OPENSTACK_VERSION:-queens}
+
 cat << EOF > /opt/control/instance.yaml
 provider_config:
   bms:
@@ -219,7 +221,7 @@ global_configuration:
   REGISTRY_PRIVATE_INSECURE: True
 contrail_configuration:
   CLOUD_ORCHESTRATOR: openstack
-  OPENSTACK_VERSION: queens
+  OPENSTACK_VERSION: $OPENSTACK_VERSION
   AUTH_MODE: keystone
   KEYSTONE_AUTH_URL_VERSION: /v3
   CONFIG_DATABASE_NODEMGR__DEFAULTS__minimum_diskGB: "2"

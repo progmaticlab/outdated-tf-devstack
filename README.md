@@ -40,12 +40,15 @@ cd tf-stack
 ## Installation configuration
 
 Contrail Networking is deployed with Kubernetes as orchestrator by default.
-You can select OpenStack as orchestrator with environment variables before installation:
+You can select OpenStack as orchestrator with environment variables before installation.
 
 ```
-export ORCHESTRATOR=kubernetes
+export ORCHESTRATOR=openstack
+export OPENSTACK_VERSION=queens
 ./start
 ```
+
+OpenStack version may be selected from queens (default), ocata or rocky.
 
 ## Building step
 
