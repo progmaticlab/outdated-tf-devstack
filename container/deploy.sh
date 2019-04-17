@@ -271,7 +271,7 @@ ansible-playbook -v -e orchestrator=$ORCHESTRATOR \
 
 echo
 echo Deployment scripts are finished
-[ "$ORCHESTRATOR" == "openstack" ] && echo Please reboot node before testing
+[ "$DEV_ENV" == "true" ] && echo Please reboot node before testing
 echo Contrail Web UI must be available at https://$NODE_IP:8143
 [ "$ORCHESTRATOR" == "openstack" ] && echo OpenStack UI must be avaiable at http://$NODE_IP
 echo Use admin/contrail123 to log in
