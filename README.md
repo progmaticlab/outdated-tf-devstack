@@ -1,15 +1,26 @@
 # tf-devstack
-tf-devstack is a series of scripts used to quickly bring up a complete Contrail Networking environment on a single node
 
-## Node requirements
+tf-devstack is a tool for deploy Contrail from published containers or build and deploy from sources.
+It is similar to an OpenStack's devstack tool and
+allows bringing up Contrail along with Kubernets of OpenStack cloud on an all-in-one single node deployment.
+
+## Hardware and software requirements
+
+Recommended:
+- AWS instance with 16 GB of RAM and 50 GB of disk to deploy from published containers.
+- AWS instance with 16 GB of RAM and 80 GB disk space to build and deploy from sources.
+
+Minimal:
+- VirtualBox VM with 10 GB of RAM and 50 GB of disk to deploy from published containers.
+
+- Centos7
+- or Ubuntu16.04 (under construction, not tested)
 
 This scripts tested on a AWS node with Centos 7.
-Recommended configuration is 16 GB of RAM and 50 GB of disk or more.
-Minimal tested configuration is 10 GB of RAM.
 
-## Installation steps
+## Quick start on an AWS instance
 
-1. Launch the new AWS instance with Centos 7. Log into a new instance and get root access:
+1. Launch the new AWS instance. Log into a new instance and get root access:
 
 ```
 sudo su -
@@ -56,5 +67,6 @@ Work in progress.
 
 ## Known issues
 
-- Deployment scripts tested on CentOS7 and AWS only
+- Deployment scripts tested on CentOS 7 and AWS only
+- OpenStack ocata version doesn't working properly on AWS
 - Occasional errors prevents deployment Kubernetes on a VirtualBox machine
