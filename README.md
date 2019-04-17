@@ -1,6 +1,7 @@
 # tf-devstack
 
 tf-devstack is a tool for deploy Contrail from published containers or build and deploy from sources.
+
 It is similar to an OpenStack's devstack tool and
 allows bringing up Contrail along with Kubernets of OpenStack cloud on an all-in-one single node deployment.
 
@@ -37,7 +38,7 @@ yum install -y git
 
 ```
 git clone http://github.com/progmaticlab/tf-devstack
-cd tf-stack
+cd tf-devstack
 ./prepare.sh
 ```
 
@@ -85,8 +86,15 @@ To deploy Contrail from published containers used
 Preparation script allow root user to connect to host via ssh, install and configure docker,
 build contrail-dev-control container.
 
+Environment variable list:
+- DEFAULT_NODE_IP a IP address used as CONTROLLER_NODES and CONTROL_NODES
+- DEV_ENV true if build step is needed, false by default
+- ORCHESTRATOR kubernetes by default or openstack
+- OPENSTACK_VERSION queens (default), ocata or rocky, variable used when ORCHESTRATOR=openstack
+
 ## Known issues
 
 - Deployment scripts tested on CentOS 7 and AWS only
 - OpenStack ocata version doesn't working properly on AWS
 - Occasional errors prevents deployment Kubernetes on a VirtualBox machine, retry can help
+- Building step is under construction
