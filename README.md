@@ -13,6 +13,7 @@ Recommended:
 Minimal:
 - VirtualBox VM with 10 GB of RAM and 50 GB of disk to deploy from published containers.
 
+OS:
 - Centos7
 - or Ubuntu16.04 (under construction, not tested)
 
