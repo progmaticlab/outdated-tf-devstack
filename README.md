@@ -8,8 +8,8 @@ allows bringing up Contrail along with Kubernets of OpenStack cloud on an all-in
 ## Hardware and software requirements
 
 Recommended:
-- AWS instance with 4 virtual CPU, 16 GB of RAM and 50 GB of disk to deploy from published containers.
-- AWS instance with 4 virtual CPU, 16 GB of RAM and 80 GB disk space to build and deploy from sources.
+- AWS instance with 4 virtual CPU, 16 GB of RAM and 50 GB of disk space to deploy from published containers
+- AWS instance with 4 virtual CPU, 16 GB of RAM and 80 GB of disk space to build and deploy from sources
 
 Minimal:
 - VirtualBox VM with 2 CPU, 10 GB of RAM and 50 GB of disk to deploy from published containers.
@@ -98,3 +98,4 @@ Environment variable list:
 - OpenStack ocata version doesn't working properly on AWS
 - Occasional errors prevents deployment Kubernetes on a VirtualBox machine, retry can help
 - Building step is under construction
+- One or more Contrail containers are in "Restarting" status after installation, try to wait a 2-3 minutes or reboot instance
