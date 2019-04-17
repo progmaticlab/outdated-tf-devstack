@@ -47,7 +47,7 @@ cd tf-stack
 ./start.sh
 ```
 
-4. Wait about 30-60 minutes to complete the deployment.
+5. Wait about 30-60 minutes to complete the deployment.
 
 ## Installation configuration
 
@@ -64,10 +64,29 @@ OpenStack version may be selected from queens (default), ocata or rocky.
 
 ## Building step
 
-Work in progress.
+*This step is not tested yet.*
+
+Environment variable DEV_ENV may be defined as "true" to build Contrail from sources.
+Please, set variable BEFORE preparation script:
+
+```
+export DEV_ENV=true
+./prepare.sh
+```
+
+In this case reboot instance needed after building and deployment will be finished.
+
+## Details
+
+To deploy Contrail from published containers used
+[contrail-container-deployer playbooks](https://github.com/Juniper/contrail-ansible-deployer). For building step used
+[contrail-dev-env environment](https://github.com/Juniper/contrail-dev-env).
+
+Preparation script allow root user to connect to host via ssh, install and configure docker,
+build contrail-dev-control container.
 
 ## Known issues
 
 - Deployment scripts tested on CentOS 7 and AWS only
 - OpenStack ocata version doesn't working properly on AWS
-- Occasional errors prevents deployment Kubernetes on a VirtualBox machine
+- Occasional errors prevents deployment Kubernetes on a VirtualBox machine, retry can help
