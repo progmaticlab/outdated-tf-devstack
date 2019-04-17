@@ -15,7 +15,13 @@ Minimal tested configuration is 10 GB of RAM.
 sudo su -
 ```
 
-2. Clone this repository and run the preparation script:
+2. Install git to clone this repository:
+
+```
+yum install -y git
+```
+
+3. Clone this repository and run the preparation script:
 
 ```
 git clone http://github.com/progmaticlab/tf-devstack
@@ -23,7 +29,7 @@ cd tf-stack
 ./prepare.sh
 ```
 
-3. Start Contrail Networking deployment process:
+4. Start Contrail Networking deployment process:
 
 ```
 ./start.sh
