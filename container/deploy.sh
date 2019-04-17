@@ -4,9 +4,12 @@
 
 ORCHESTRATOR=${ORCHESTRATOR:-kubernetes}
 DEV_ENV=${DEV_ENV:-false}
+OPENSTACK_VERSION=${OPENSTACK_VERSION:-queens}
 
+[ "$DEFAULT_NODE_IP" != "" ] && echo "Default node IP: $DEFAULT_NODE_IP"
 echo "Build from source: $DEV_ENV" # true or false
 echo "Orchestrator: $ORCHESTRATOR" # kubernetes or openstack
+[ "$ORCHESTRATOR" == "openstack" ] && echo "OpenStack version: $OPENSTACK_VERSION"
 echo
 
 [ -d /opt/control/contrail-ansible-deployer ] && rm -rf /opt/control/contrail-ansible-deployer
@@ -191,8 +194,6 @@ fi
 # or generate inventory file for queens all-in-one
 
 if [ "$ORCHESTRATOR" == "openstack" ]; then
-
-OPENSTACK_VERSION=${OPENSTACK_VERSION:-queens}
 
 cat << EOF > /opt/control/instance.yaml
 provider_config:
