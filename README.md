@@ -8,11 +8,11 @@ allows bringing up Contrail along with Kubernets of OpenStack cloud on an all-in
 ## Hardware and software requirements
 
 Recommended:
-- AWS instance with 16 GB of RAM and 50 GB of disk to deploy from published containers.
-- AWS instance with 16 GB of RAM and 80 GB disk space to build and deploy from sources.
+- AWS instance with 4 virtual CPU, 16 GB of RAM and 50 GB of disk to deploy from published containers.
+- AWS instance with 4 virtual CPU, 16 GB of RAM and 80 GB disk space to build and deploy from sources.
 
 Minimal:
-- VirtualBox VM with 10 GB of RAM and 50 GB of disk to deploy from published containers.
+- VirtualBox VM with 2 CPU, 10 GB of RAM and 50 GB of disk to deploy from published containers.
 
 OS:
 - Centos7
