@@ -266,3 +266,12 @@ ansible-playbook -v -e orchestrator=$ORCHESTRATOR \
     playbooks/install_contrail.yml
 
 [ $? -gt 1 ] && echo Installation aborted
+
+# show results
+
+echo
+echo Deployment scripts are finished
+[ "$ORCHESTRATOR" == "openstack" ] && echo Please reboot node before testing
+echo Contrail Web UI must be available at https://$NODE_IP:8143
+[ "$ORCHESTRATOR" == "openstack" ] && echo OpenStack UI must be avaiable at http://$NODE_IP
+echo Use admin/contrail123 to log in
