@@ -1,8 +1,8 @@
 # tf-devstack
 
-tf-devstack is a tool for deploy Contrail from published containers or build and deploy from sources.
+tf-devstack is a tool for deployment of Contrail from published containers or building and deploying from sources.
 
-It is similar to an OpenStack's devstack tool and
+It is similar to the OpenStack's devstack tool and
 allows bringing up Contrail along with Kubernets of OpenStack cloud on an all-in-one single node deployment.
 
 ## Hardware and software requirements
@@ -65,6 +65,8 @@ OpenStack version may be selected from queens (default), ocata or rocky.
 
 ## Building step
 
+*This step is not tested yet.*
+
 Environment variable DEV_ENV may be defined as "true" to build Contrail from sources.
 Please, set variable BEFORE preparation script:
 
@@ -95,6 +97,7 @@ Environment variable list:
 - Deployment scripts tested on CentOS 7 and AWS only
 - OpenStack ocata version doesn't working properly on AWS
 - Occasional errors prevents deployment Kubernetes on a VirtualBox machine, retry can help
+- Building step is under construction
 - One or more Contrail containers are in "Restarting" status after installation,
 try to wait a 2-3 minutes or reboot the instance
 - One or more pods in "Pending" status, try to "kubectl taint nodes NODENAME node-role.kubernetes.io/master-",
