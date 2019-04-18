@@ -11,6 +11,7 @@ RUN yum -y update \
 &&  yum install -y ansible-2.4.2.0 \
     iproute \
     git \
+    gettext \
 &&  yum clean all \
 &&  rm -rf /var/cache/yum
 
@@ -18,6 +19,6 @@ RUN mkdir --parents /opt/control
 
 ADD Dockerfile $HOME/
 
-ADD deploy.sh /opt/control
+ADD control /opt/control
 
 ENTRYPOINT "/opt/control/deploy.sh"

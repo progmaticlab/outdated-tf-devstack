@@ -67,6 +67,7 @@ fi
 
 # show current node configuration
 
+echo
 PHYSICAL_INTERFACE=$(ip route get 1 | grep -o 'dev.*' | awk '{print($2)}')
 DEFAULT_NODE_IP=$(ip addr show dev $PHYSICAL_INTERFACE | grep 'inet ' | awk '{print $2}' | head -n 1 | cut -d '/' -f 1)
 echo "NODE IP $DEFAULT_NODE_IP"

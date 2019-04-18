@@ -1,0 +1,19 @@
+---
+- hosts: node
+  remote_user: root
+  become: yes
+  tasks:
+  - name: clean up dev-env repository path
+    file:
+      path: /opt/control/contrail-dev-env
+      state: absent
+
+  - name: install git package
+    package:
+      name: git
+      state: present
+
+  - name: clone dev-env repository
+    git:
+      repo: https://github.com/progmaticlab/contrail-dev-env.git
+      dest: /root/contrail-dev-env
