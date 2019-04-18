@@ -25,7 +25,7 @@ yum install docker-ce-18.03.1.ce -y
 function wait_docker () {
     # wait docker service is up
     for i in {1..10}; do
-        systemctl status docker
+        systemctl status docker > /dev/null
         [ $? == 0 ]; break
         sleep 2
     done
