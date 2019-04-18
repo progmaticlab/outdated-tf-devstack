@@ -67,7 +67,7 @@ OpenStack version may be selected from queens (default), ocata or rocky.
 ## Building step
 
 Environment variable DEV_ENV may be defined as "true" to build Contrail from sources.
-Please, set variable BEFORE preparation script:
+Please, set variable BEFORE preparation script or restart preparation script:
 
 ```
 export DEV_ENV=true
@@ -75,6 +75,8 @@ export DEV_ENV=true
 ```
 
 In this case, the instance must be rebooted manually after building and deployment.
+
+Building step takes from one to two hours.
 
 ## Details
 
