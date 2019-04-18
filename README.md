@@ -65,8 +65,6 @@ OpenStack version may be selected from queens (default), ocata or rocky.
 
 ## Building step
 
-*This step is not tested yet.*
-
 Environment variable DEV_ENV may be defined as "true" to build Contrail from sources.
 Please, set variable BEFORE preparation script:
 
@@ -79,11 +77,11 @@ In this case, the instance must be rebooted manually after building and deployme
 
 ## Details
 
-To deploy Contrail from published containers used
-[contrail-container-deployer playbooks](https://github.com/Juniper/contrail-ansible-deployer). For building step used
-[contrail-dev-env environment](https://github.com/Juniper/contrail-dev-env).
+To deploy Contrail from published containers
+[contrail-container-deployer playbooks](https://github.com/Juniper/contrail-ansible-deployer) is used. For building step
+[contrail-dev-env environment](https://github.com/Juniper/contrail-dev-env) is used.
 
-Preparation script allow root user to connect to host via ssh, install and configure docker,
+Preparation script allows root user to connect to host via ssh, install and configure docker,
 build contrail-dev-control container.
 
 Environment variable list:
@@ -94,11 +92,10 @@ Environment variable list:
 
 ## Known issues
 
-- Deployment scripts tested on CentOS 7 and AWS only
-- OpenStack ocata version doesn't working properly on AWS
-- Occasional errors prevents deployment Kubernetes on a VirtualBox machine, retry can help
-- Building step is under construction
-- One or more Contrail containers are in "Restarting" status after installation,
-try to wait a 2-3 minutes or reboot the instance
-- One or more pods in "Pending" status, try to "kubectl taint nodes NODENAME node-role.kubernetes.io/master-",
+- Deployment scripts are tested on CentOS 7 and AWS only
+- OpenStack ocata version doesn't work properly on AWS
+- Occasional errors prevent deployment of Kubernetes on a VirtualBox machine, retry can help
+- One or more of Contrail containers are in "Restarting" status after installation,
+try to wait 2-3 minutes or reboot the instance
+- One or more pods in "Pending" state, try to "kubectl taint nodes NODENAME node-role.kubernetes.io/master-",
 where NODENAME is name from "kubectl get node"
