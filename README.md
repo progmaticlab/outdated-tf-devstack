@@ -3,7 +3,7 @@
 tf-devstack is a tool for deployment of Contrail from published containers or building and deploying from sources.
 
 It is similar to the OpenStack's devstack tool and
-allows bringing up Contrail along with Kubernets of OpenStack cloud on an all-in-one single node deployment.
+allows bringing up Contrail along with Kubernetes of OpenStack cloud on an all-in-one single node deployment.
 
 ## Hardware and software requirements
 
@@ -12,7 +12,8 @@ Recommended:
 - AWS instance with 4 virtual CPU, 16 GB of RAM and 80 GB of disk space to build and deploy from sources
 
 Minimal:
-- VirtualBox VM with 2 CPU, 10 GB of RAM and 50 GB of disk to deploy from published containers.
+- VirtualBox VM with 2 CPU, 8 GB of RAM and 30 GB of disk to deploy from published containers with Kubernetes.
+- VirtualBox VM with 2 CPU, 10 GB of RAM and 30 GB of disk to deploy from published containers with OpenStack.
 
 OS:
 - Centos7
