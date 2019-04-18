@@ -75,7 +75,7 @@ export DEV_ENV=true
 ./prepare.sh
 ```
 
-In this case reboot instance needed after building and deployment will be finished.
+In this case, the instance must be rebooted manually after building and deployment.
 
 ## Details
 
@@ -98,4 +98,7 @@ Environment variable list:
 - OpenStack ocata version doesn't working properly on AWS
 - Occasional errors prevents deployment Kubernetes on a VirtualBox machine, retry can help
 - Building step is under construction
-- One or more Contrail containers are in "Restarting" status after installation, try to wait a 2-3 minutes or reboot instance
+- One or more Contrail containers are in "Restarting" status after installation,
+try to wait a 2-3 minutes or reboot the instance
+- One or more pods in "Pending" status, try to "kubectl taint nodes NODENAME node-role.kubernetes.io/master-",
+where NODENAME is name from "kubectl get node"
