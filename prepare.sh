@@ -22,6 +22,15 @@ yum install docker-ce-18.03.1.ce -y
 
 # docker launch
 
+function wait_docker () {
+    # wait docker service is up
+    for i in {1..10}; do
+        systemctl status docker
+        [ $? == 0 ]; break
+        sleep 2
+    done
+}
+
 if [ ! -d /etc/docker ]; then
 mkdir /etc/docker
 cat << EOF > /etc/docker/daemon.json
@@ -35,11 +44,15 @@ fi
 
 systemctl enable docker
 systemctl start docker
+wait_docker
 
 # fix docker configuration for build step
 
 if [ "$DEV_ENV" == "true" ]; then
+  
+    # detect docker gateway IP
     container_registry_ip=$(docker inspect --format "{{(index .IPAM.Config 0).Gateway}}" bridge)
+    [ "$container_registry_ip" == "" ] && container_registry_ip="172.17.0.1"
 
 cat << EOF > /etc/docker/daemon.json
 {
@@ -52,6 +65,7 @@ DOCKER_STORAGE_OPTIONS="--storage-opt dm.basesize=20G"
 EOF
 
     systemctl restart docker
+    wait_docker
 fi
 
 # control node image preparation
