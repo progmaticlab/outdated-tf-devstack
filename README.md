@@ -86,10 +86,10 @@ Preparation script allows root user to connect to host via ssh, install and conf
 build contrail-dev-control container.
 
 Environment variable list:
-- DEFAULT_NODE_IP a IP address used as CONTROLLER_NODES and CONTROL_NODES
 - DEV_ENV true if build step is needed, false by default
 - ORCHESTRATOR kubernetes by default or openstack
 - OPENSTACK_VERSION queens (default), ocata or rocky, variable used when ORCHESTRATOR=openstack
+- NODE_IP a IP address used as CONTROLLER_NODES and CONTROL_NODES
 
 ## Known issues
 
