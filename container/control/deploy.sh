@@ -34,7 +34,7 @@ CONTRAIL_CONTAINER_TAG="ocata-master-latest"
 
 if [ "$DEV_ENV" == "true" ]; then
     # build step
-    CONTAINER_REGISTRY="172.17.0.1:6666"
+    CONTAINER_REGISTRY="$(docker inspect --format "{{(index .IPAM.Config 0).Gateway}}" bridge):6666"
     CONTRAIL_CONTAINER_TAG="dev"
 
     ansible-playbook -i /opt/control/host.yaml /opt/control/build.yaml

@@ -9,16 +9,6 @@
 [ ! -f /root/.ssh/authorized_keys ] && touch /root/.ssh/authorized_keys && chmod 0600 /root/.ssh/authorized_keys
 grep "$(</root/.ssh/id_rsa.pub)" /root/.ssh/authorized_keys -q || cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys
 
-# detect build step variables
-
-CONTAINER_REGISTRY="opencontrailnightly"
-
-if [ "$DEV_ENV" == "true" ]; then
-    CONTAINER_REGISTRY="172.17.0.1:6666"
-    # disable firewall
-    systemctl stop firewalld || true
-fi
-
 # docker installation
 
 cat << EOF > /etc/yum.repos.d/docker-ce.repo
@@ -32,18 +22,12 @@ yum install docker-ce-18.03.1.ce -y
 
 # docker launch
 
-if [ ! -f /etc/sysconfig/docker-storage ]; then
-cat << EOF > /etc/sysconfig/docker-storage
-DOCKER_STORAGE_OPTIONS="--storage-opt dm.basesize=20G"
-EOF
-fi
-
 if [ ! -d /etc/docker ]; then
 mkdir /etc/docker
 cat << EOF > /etc/docker/daemon.json
 {
     "insecure-registries": [
-        "$CONTAINER_REGISTRY"
+        "opencontrailnightly"
     ]
 }
 EOF
@@ -51,6 +35,24 @@ fi
 
 systemctl enable docker
 systemctl start docker
+
+# fix docker configuration for build step
+
+if [ "$DEV_ENV" == "true" ]; then
+    container_registry_ip=$(docker inspect --format "{{(index .IPAM.Config 0).Gateway}}" bridge)
+
+cat << EOF > /etc/docker/daemon.json
+{
+  "insecure-registries": ["$container_registry_ip:6666"]
+}
+EOF
+
+cat << EOF > /etc/sysconfig/docker-storage
+DOCKER_STORAGE_OPTIONS="--storage-opt dm.basesize=20G"
+EOF
+
+    systemctl restart docker
+fi
 
 # control node image preparation
 
