@@ -28,10 +28,10 @@ EOF
 
 elif [ "$distro" == "ubuntu" ]; then
 
-    codename=$(cat /etc/lsb-release | grep DISTRIB_CODENAME | cut -d '=' -f 2)
-
+    apt-get update
     apt-get install -y apt-transport-https ca-certificates curl software-properties-common
     wget -qO - https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+    codename=$(cat /etc/lsb-release | grep DISTRIB_CODENAME | cut -d '=' -f 2)
 
 cat << EOF > /etc/apt/sources.list.d/docker-ce.list
 deb https://download.docker.com/linux/ubuntu $codename stable
