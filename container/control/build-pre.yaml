@@ -17,6 +17,7 @@
     git:
       repo: https://github.com/progmaticlab/contrail-dev-env.git
       dest: /root/contrail-dev-env
+      version: 24d71e4a319c08deddd0bfbc6b6ba256f7b7672a
 
   - name: HACK format /etc/docker/daemon.json to make happy contrail-container-deployeer
     copy:
