@@ -96,9 +96,13 @@ Environment variable list:
 ## Known issues
 
 - Deployment scripts are tested on CentOS 7 and AWS only
-- OpenStack ocata version doesn't work properly on AWS
 - Occasional errors prevent deployment of Kubernetes on a VirtualBox machine, retry can help
 - One or more of Contrail containers are in "Restarting" status after installation,
 try to wait 2-3 minutes or reboot the instance
 - One or more pods in "Pending" state, try to "kubectl taint nodes NODENAME node-role.kubernetes.io/master-",
 where NODENAME is name from "kubectl get node"
+- OpenStack/rocky web UI reports "Something went wrong!",
+try use CLI (you need install python-openstackclient in virtualenv)
+- OpenStack/ocata can't find host to spawn VM,
+set virt_type=qemu in [libvirt] section of /etc/kolla/config/nova/nova-compute.conf file inside nova_compute container,
+then restart this container
