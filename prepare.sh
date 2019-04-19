@@ -22,6 +22,7 @@ name=docker-ce-18.03.1.ce repository
 baseurl=https://download.docker.com/linux/centos/7/x86_64/stable
 enabled=1
 EOF
+
     rpm --import https://download.docker.com/linux/centos/gpg
     yum install docker-ce-18.03.1.ce -y
 
@@ -29,12 +30,12 @@ elif [ "$distro" == "ubuntu" ]; then
 
     codename=$(cat /etc/lsb-release | grep DISTRIB_CODENAME | cut -d '=' -f 2)
 
+    apt-get install -y apt-transport-https ca-certificates curl software-properties-common
+    wget -qO - https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
 cat << EOF > /etc/apt/sources.list.d/docker-ce.list
 deb https://download.docker.com/linux/ubuntu $codename stable
 EOF
-
-    apt-get install -y apt-transport-https ca-certificates curl software-properties-common
-    wget -qO - https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
     apt-get update
     apt-get install -y docker-ce=18.03.1~ce-0~ubuntu
