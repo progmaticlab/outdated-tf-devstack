@@ -27,20 +27,22 @@ envsubst < /opt/control/host_template.yaml > /opt/control/host.yaml
 
 ansible-playbook -i /opt/control/host.yaml /opt/control/pre.yaml
 
-# define build step variables
+# default env variables
 
 CONTAINER_REGISTRY="opencontrailnightly"
 CONTRAIL_CONTAINER_TAG="ocata-master-latest"
 
+# build step
+
 if [ "$DEV_ENV" == "true" ]; then
-    # build step
-    CONTAINER_REGISTRY="$(docker inspect --format "{{(index .IPAM.Config 0).Gateway}}" bridge):6666"
-    CONTRAIL_CONTAINER_TAG="dev"
-
-    ansible-playbook -i /opt/control/host.yaml /opt/control/build.yaml
-
     # build all
+    ansible-playbook -i /opt/control/host.yaml /opt/control/build-pre.yaml
     ssh root@$MASTER_NODE_IP "cd /root/contrail-dev-env && AUTOBUILD=1 BUILD_DEV_ENV=1 ./startup.sh"
+    ansible-playbook -i /opt/control/host.yaml /opt/control/build-post.yaml
+
+    # fix env variables
+    CONTAINER_REGISTRY="$(</opt/control/registry_ip):6666"
+    CONTRAIL_CONTAINER_TAG="dev"
 fi
 
 # generate inventory file
