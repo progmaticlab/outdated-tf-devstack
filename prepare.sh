@@ -56,7 +56,9 @@ if [ "$DEV_ENV" == "true" ]; then
 
 cat << EOF > /etc/docker/daemon.json
 {
-  "insecure-registries": ["$container_registry_ip:6666"]
+    "insecure-registries": [
+        "$container_registry_ip:6666"
+    ]
 }
 EOF
 
