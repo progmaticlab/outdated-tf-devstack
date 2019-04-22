@@ -9,10 +9,20 @@
 [ ! -f /root/.ssh/authorized_keys ] && touch /root/.ssh/authorized_keys && chmod 0600 /root/.ssh/authorized_keys
 grep "$(</root/.ssh/id_rsa.pub)" /root/.ssh/authorized_keys -q || cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys
 
-# docker installation
+# linux version
 
 distro=$(cat /etc/*release | egrep '^ID=' | awk -F= '{print $2}' | tr -d \")
 echo $distro detected.
+
+# check python
+
+if [ "$distro" == "centos" ]; then
+  test -e /usr/bin/python || yum install -y python-minimal
+elif [ "$distro" == "ubuntu" ]; then
+  test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
+fi
+
+# docker installation
 
 if [ "$distro" == "centos" ]; then
 

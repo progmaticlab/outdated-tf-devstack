@@ -57,3 +57,13 @@
       dest: /opt/control/default_node_ip
       content: "{{ default_node_ip.stdout }}"
     delegate_to: localhost
+
+  - name: Get OS version in Linux
+    shell: "cat /etc/*release | egrep '^ID=' | awk -F= '{print $2}' | tr -d \""
+    register: node_distro
+
+  - Store OS version in Linux
+    copy:
+      dest: /opt/control/node_distro
+      content: "{{ node_distro.stdout }}"
+    delegate_to: localhost

@@ -9,6 +9,7 @@ OPENSTACK_VERSION=${OPENSTACK_VERSION:-queens}
 [ "$NODE_IP" != "" ] && echo "Node IP: NODE_IP"
 echo "Build from source: $DEV_ENV" # true or false
 echo "Orchestrator: $ORCHESTRATOR" # kubernetes or openstack
+[ "$ORCHESTRATOR" == "kubernetes" && "$K8S_VERSION" != "" ] && echo "Kubernetes version: $K8S_VERSION"
 [ "$ORCHESTRATOR" == "openstack" ] && echo "OpenStack version: $OPENSTACK_VERSION"
 echo
 
@@ -48,9 +49,19 @@ fi
 # generate inventory file
 
 [ "$NODE_IP" == "" ] && NODE_IP=$(</opt/control/default_node_ip)
+
+if [ "$K8S_VERSION" == "" ]; then
+    if [ "$(</opt/control/node_distro)" == "ubuntu" ]; then
+        K8S_VERSION="1.12.7"
+    else
+        K8S_VERSION="1.12.3"
+    fi
+fi
+
 export NODE_IP
 export CONTAINER_REGISTRY
 export CONTRAIL_CONTAINER_TAG
+export K8S_VERSION
 export OPENSTACK_VERSION
 envsubst < /opt/control/instance_$ORCHESTRATOR.yaml > /opt/control/instance.yaml
 
