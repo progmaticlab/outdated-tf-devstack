@@ -59,7 +59,7 @@
     delegate_to: localhost
 
   - name: Get OS version in Linux
-    shell: "cat /etc/*release | egrep '^ID=' | awk -F= '{print $2}' | tr -d \""
+    shell: "cat /etc/*release | egrep '^ID=' | awk -F= '{print $2}' | tr -d '\"'"
     register: node_distro
 
   - name: Store OS version in Linux
