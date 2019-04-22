@@ -12,13 +12,3 @@
       dest: /opt/control/registry_ip
       content: "{{ registry_ip.stdout }}"
     delegate_to: localhost
-
-#  - name: HACK format /etc/docker/daemon.json to make happy contrail-container-deployeer
-#    copy:
-#      dest: /etc/docker/daemon.json
-#      content: |
-#        {
-#          "insecure-registries": [
-#            "{{ registry_ip.stdout }}:6666"
-#          ]
-#        }

@@ -9,7 +9,7 @@ OPENSTACK_VERSION=${OPENSTACK_VERSION:-queens}
 [ "$NODE_IP" != "" ] && echo "Node IP: NODE_IP"
 echo "Build from source: $DEV_ENV" # true or false
 echo "Orchestrator: $ORCHESTRATOR" # kubernetes or openstack
-[ "$ORCHESTRATOR" == "kubernetes" && "$K8S_VERSION" != "" ] && echo "Kubernetes version: $K8S_VERSION"
+[ "$ORCHESTRATOR" == "kubernetes" ] && [ "$K8S_VERSION" != "" ] && echo "Kubernetes version: $K8S_VERSION"
 [ "$ORCHESTRATOR" == "openstack" ] && echo "OpenStack version: $OPENSTACK_VERSION"
 echo
 

@@ -16,10 +16,8 @@ Minimal:
 - VirtualBox VM with 2 CPU, 10 GB of RAM and 30 GB of disk to deploy from published containers with OpenStack.
 
 OS:
-- Centos7
-- or Ubuntu16.04 (under construction, not tested)
-
-This scripts tested on a AWS node with Centos 7.
+- Centos 7
+- Ubuntu 16.04
 
 ## Quick start on an AWS instance
 
