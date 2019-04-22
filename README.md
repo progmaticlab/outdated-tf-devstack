@@ -23,7 +23,14 @@ This scripts tested on a AWS node with Centos 7.
 
 ## Quick start on an AWS instance
 
-1. Launch the new AWS instance. Log into a new instance and get root access:
+1. Launch the new AWS instance.
+
+Steps:
+- CentOS 7 (x86_64) - with Updates HVM
+- t2.xlarge instance type
+- 50 GiB disk Storage
+
+Log into a new instance and get root access:
 
 ```
 sudo su -
