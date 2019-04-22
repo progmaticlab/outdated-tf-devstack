@@ -62,7 +62,7 @@
     shell: "cat /etc/*release | egrep '^ID=' | awk -F= '{print $2}' | tr -d \""
     register: node_distro
 
-  - Store OS version in Linux
+  - name: Store OS version in Linux
     copy:
       dest: /opt/control/node_distro
       content: "{{ node_distro.stdout }}"
