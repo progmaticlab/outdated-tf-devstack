@@ -67,8 +67,7 @@ function wait_docker () {
     done
 }
 
-if [ ! -d /etc/docker ]; then
-mkdir /etc/docker
+[ ! -d /etc/docker ] && mkdir /etc/docker
 cat << EOF > /etc/docker/daemon.json
 {
     "insecure-registries": [
@@ -76,7 +75,6 @@ cat << EOF > /etc/docker/daemon.json
     ]
 }
 EOF
-fi
 
 systemctl enable docker
 systemctl start docker
