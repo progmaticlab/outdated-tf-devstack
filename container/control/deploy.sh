@@ -90,7 +90,7 @@ ansible-playbook -v -e orchestrator=$ORCHESTRATOR \
     -e config_file=/opt/control/instance.yaml \
     playbooks/install_contrail.yml
 
-[ $? -gt 1 ] && echo Installation aborted
+[ $? -gt 1 ] && echo Installation aborted && exit
 
 # show results
 
