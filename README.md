@@ -97,12 +97,14 @@ build contrail-dev-control container.
 Environment variable list:
 - DEV_ENV true if build step is needed, false by default
 - ORCHESTRATOR kubernetes by default or openstack
+- K8S_VERSION kubernetes version, 1.12.3 is default for Centos, 1.12.7 is default for Ubuntu
 - OPENSTACK_VERSION queens (default), ocata or rocky, variable used when ORCHESTRATOR=openstack
 - NODE_IP a IP address used as CONTROLLER_NODES and CONTROL_NODES
+- MASTER_NODE_IP a instance IP address 
 
 ## Known issues
 
-- Deployment scripts are tested on CentOS 7 and AWS only
+- Deployment scripts are tested on CentOS 7 / Ubuntu 16.04 and AWS / Virtualbox
 - Occasional errors prevent deployment of Kubernetes on a VirtualBox machine, retry can help
 - One or more of Contrail containers are in "Restarting" status after installation,
 try to wait 2-3 minutes or reboot the instance
