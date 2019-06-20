@@ -1,5 +1,8 @@
 # tf-devstack
 
+This is a development version.
+Instead please use the new https://github.com/tungstenfabric/tf-devstack
+
 tf-devstack is a tool for deployment of Contrail from published containers or building and deploying from sources.
 
 It is similar to the OpenStack's devstack tool and
